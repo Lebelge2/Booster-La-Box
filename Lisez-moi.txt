@@ -1,0 +1,46 @@
+                  La Box avec une voie de programmation et deux voies principales
+                 -----------------------------------------------------------------
+Bonjour.
+
+Upgrade software.
+----------------
+   Il faut modifier ou remplacer 4 fichiers.
+
+   1) Modification de votre fichier: DCCRMT.h    
+               Ajouter la déclaration de deux fonctions: 
+
+               void StarTimerCutOutMain();     
+               void StarTimerCutOutProg(); 
+               (Voir fichier joint)
+
+   2) Modification de votre fichier: config.h  et/ou config.labox.h
+
+     #define LABOX_MOTOR_SHIELD F("LABOX"), \
+         new MotorDriver(13, 12, 14, UNUSED_PIN, 25, 4.80, 2000, UNUSED_PIN), \
+         new MotorDriver(32, 33, 27, UNUSED_PIN, 36, 0.80, 2500, UNUSED_PIN)  
+         (Voir fichier joint)
+
+   3) Remplacer le fichier: DCCRMT.cpp   par le fichier joint.
+
+   4) Remplacer le fichier: CommandeStation-EX-LaBox.ino   par le fichier joint.
+
+
+Si vous n’avez pas besoin du RailCom, commenter cette ligne dans DCCRMT.cpp (Haut de page)
+
+     // #define   RailCom_enable
+
+
+Il faut modifier La Box pour  RailCom sur la voie de programmation, (Sup. T1,R1,R2) voir le post:
+ 
+https://forum.locoduino.org/index.php?topic=1750.0
+
+
+
+Toutes les lignes de code ajoutées ou modifiées sont commentées et commencent par un * (astérisque)
+
+
+Le module L298N ne possède pas de détection de courant (court-circuit), il faut le modifier comme suit:
+
+https://dcc-ex.com/reference/hardware/motorboards/L298N-motor-board-setup.html#gsc.tab=0
+
+Souder deux résistances de 1. Ohm 3W
